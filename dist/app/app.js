@@ -7,6 +7,17 @@ const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.text());
+const useRouter = express_1.default.Router();
+app.use('/api/v1/users', useRouter);
+useRouter.post('/create-user', (req, res) => {
+    const user = req.body;
+    console.log(user);
+    res.json({
+        success: true,
+        message: "successfully data pass",
+        data: user
+    });
+});
 app.get('/', (req, res) => {
     console.log(req.query);
     res.send('I am serving bdCalling It Ltd as a front end developer');
