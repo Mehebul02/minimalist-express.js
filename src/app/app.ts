@@ -49,4 +49,13 @@ app.post('/:userId', (req: Request, res: Response) => {
 })
 
 
+// gobble  error 
+
+app.use((error:any, req:Request, res:Response, next:NextFunction)=>{
+    res.status(400).json({
+        success:false,
+        message:"Page Not Found"
+    })
+})
+
 export default app
