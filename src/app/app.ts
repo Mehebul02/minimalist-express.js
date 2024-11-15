@@ -26,19 +26,25 @@ useRouter.post('/create-user', (req: Request, res: Response) => {
 })
 
 
-app.get('/', (req: Request, res: Response) => {
-    console.log(req.query);
-    res.send('I am serving bdCalling It Ltd as a front end developer')
-})
-
 // app.get('/', (req: Request, res: Response) => {
-//     console.log(req.body);
-
-//     res.json({
-//         success: true,
-//         message: 'Confirm the data'
-//     })
+//     console.log(req.query);
+//     res.send('I am serving bdCalling It Ltd as a front end developer')
 // })
+
+app.get('/', (req: Request, res: Response,next:NextFunction) => {
+   try{
+    console.log(something);
+   }
+   catch(error){
+    next(error)
+    // console.log(error);
+    // res.status(400).json({
+    //     success:false,
+    //     message:'Tumar page aka ne nai'
+    // })
+   }
+    
+})
 
 app.post('/:userId', (req: Request, res: Response) => {
     console.log(req.params);
