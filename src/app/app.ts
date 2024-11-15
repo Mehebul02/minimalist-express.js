@@ -7,21 +7,21 @@ app.use(express.text())
 
 // miller ware 
 
-const logger =((req:Request, res:Response, next:NextFunction)=>{
+const logger = ((req: Request, res: Response, next: NextFunction) => {
     console.log(req.url, req.method, req.hostname);
 })
 
 const useRouter = express.Router()
-app.use('/api/v1/users',useRouter)
+app.use('/api/v1/users', useRouter)
 
-useRouter.post('/create-user',(req:Request,res:Response)=>{
-    const user =req.body
+useRouter.post('/create-user', (req: Request, res: Response) => {
+    const user = req.body
     console.log(user);
 
     res.json({
-        success:true,
-        message:"successfully data pass",
-        data:user
+        success: true,
+        message: "successfully data pass",
+        data: user
     })
 })
 
@@ -48,13 +48,23 @@ app.post('/:userId', (req: Request, res: Response) => {
     })
 })
 
+// all error handling the code 
+
+app.all("*", (req: Request, res: Response) => {
+    res.status(400).json({
+        success: false,
+        message: "Message Not Found"
+
+    })
+})
+
 
 // gobble  error 
 
-app.use((error:any, req:Request, res:Response, next:NextFunction)=>{
+app.use((error: any, req: Request, res: Response, next: NextFunction) => {
     res.status(400).json({
-        success:false,
-        message:"Page Not Found"
+        success: false,
+        message: "Page Not Found"
     })
 })
 
